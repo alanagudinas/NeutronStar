@@ -1,4 +1,3 @@
-# hello-world
-Learning how to use git. 
+# Neutron Star Programs
 
-This is Alana. Sure hope I can learn how to use this effectively!
+Files containing equation of state fits for neutron star.
