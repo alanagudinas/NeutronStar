@@ -12,21 +12,16 @@ from math import log, exp
 import matplotlib.pyplot as plt
 
 from PiecewiseEOS_Read import *
-from PP_Gamma_Fit import *
 
 rhoMax = 0.003
-
 rhostart = 0.0003
 
 ###### Calls equation of state function ####
-def EpsilonFromDensity(rho): # make function an argument?
-    #return EpsilonFromDensityGammaPP(rho)
-    return EpsilonFromGammaPP(rho)
+def EpsilonFromDensity(rho):
+    return EpsilonFromDensityGammaPP(rho)
     
 def PressureFromDensity(rho):
-    #return PressureFromDensityGammaPP(rho)
-    #return PressureFromNuclearData(rho)
-    return PressureFromGammaPP(rho)
+    return PressureFromDensityGammaPP(rho)
 
 def ZeroFuncForPressure(rho,P):
     if(rho<0):
@@ -37,7 +32,7 @@ def ZeroFuncForPressure(rho,P):
 def DensityFromPressure(P):
     if(P<0):
         return 0.
-    root = brentq(ZeroFuncForPressure,1.e-16,rhoMax,args=(P,),xtol=1.e-12,rtol=1.e-12) #change to 14
+    root = brentq(ZeroFuncForPressure,1.e-16,rhoMax,args=(P,),xtol=1.e-14,rtol=1.e-14) #change to 14
     return root
 
 ###### Computes derivatives of ODE - should not need any change #####
@@ -50,7 +45,7 @@ def TOVderivs(t,y):
     # Find mass and energy density
     P_p = y[3]
     rho_p = DensityFromPressure(P_p)
-    eps_p = EpsilonFromDensity(rho_p)#rho_p*(1.+EpsilonFromDensity(rho_p))
+    eps_p = EpsilonFromDensity(rho_p) #rho_p*(1.+EpsilonFromDensity(rho_p))
     #Computation of derivatives
     A=1.
     if(r_p>1.e-16):
@@ -89,7 +84,6 @@ def IntegrateTOVSolution(rho_c,dR):
     res = [ode_int.y[0],ode_int.y[1],ode_int.y[2],ode_int.y[3],ode_int.y[4],ode_int.t]
     return res
 
-import numpy as np
 from numpy import zeros as zeros
 
 def MRvector0():
@@ -115,9 +109,6 @@ def MRvector0():
     print("Pressure = %g" % P_f)
     print("RestMass = %g" % RestMass)
     
-    
-    import numpy as np
-    
     rho_c = np.arange(.0003,3.0e-3,0.0002)
     n = len(rho_c)
     radius_s = zeros(n)
@@ -141,4 +132,3 @@ def MRvector0():
         mass_s[i] = sol[1]
         #print("ADM Mass = %g" % mass_s[i])
     return mass_s, radius_s,
-

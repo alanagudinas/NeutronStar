@@ -151,9 +151,9 @@ def MRfitvec(cpe):
         # Baryon mass (> grav. mass...)
         RestMass = sol[4]
         radius_t[i] = sol[5]
-        print radius_t[i]
+        #print radius_t[i]
         mass_t[i] = sol[1]
-        print mass_t[i]
+        #print mass_t[i]
     return mass_t,radius_t
 
 def main(coefvec):

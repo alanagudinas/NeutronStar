@@ -45,14 +45,19 @@ for i in range(nd):
     Gam_dataPP[i] = Gam(DensNucCode[i])
     
 values,covar = curve_fit(piecewise_fit, DensNucCode_x, Gam_dataPP)
+print values[::-1]
 values3,covar3 = curve_fit(piecewise_fit3, DensNucCode_x, Gam_dataPP)
+print values3[::-1]
 values5,covar5 = curve_fit(piecewise_fit5, DensNucCode_x, Gam_dataPP)
+print values5[::-1]
 
 ############################################################################
 
 # Plotting original piecewise polytrope G(x) with fit.
 
-plt.plot(DensNucCode_x, piecewise_fit3(DensNucCode_x, *values3),label="Fit to Gamma")
+plt.plot(DensNucCode_x, piecewise_fit3(DensNucCode_x, *values3),label="3rd Order Fit to Gamma")
+plt.plot(DensNucCode_x, piecewise_fit5(DensNucCode_x, *values5),label="5th Order Fit to Gamma")
+plt.plot(DensNucCode_x, piecewise_fit(DensNucCode_x, *values),label="7th Order Fit to Gamma")
 plt.plot(DensNucCode_x, Gam_dataPP,label="Gamma")
 plt.xlabel("x = log(rho/rho0)")
 plt.ylabel("Gamma coefficients")
@@ -60,7 +65,6 @@ plt.legend(loc="upper left")
 plt.title("Fit to Piecewise Polytrope Gamma")
 plt.show()
 
-print values3
 
 rms_e = rms_error(Gam_dataPP, piecewise_fit(DensNucCode_x, *values))
 
@@ -110,6 +114,4 @@ def EpsilonFromGammaPP(rho):
     return initialEpsilon*exp(x) + exp(x)*Pressure_function_integral
 
 ############################################################################
-
-
 

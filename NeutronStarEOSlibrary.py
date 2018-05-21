@@ -39,7 +39,7 @@ epsilon = np.zeros(3)
 p = np.zeros(3)
 K = np.zeros(4)
 
-# Adiabitic indicies for each polytrope:
+# Adiabitic indicies for each polytrope (SLy EOS):
 
 G = np.array([1.3569, 3.005, 2.988, 2.851])
 

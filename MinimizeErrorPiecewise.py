@@ -18,9 +18,7 @@ from math import log, exp
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 import TOVSolver_MR_fit as tov
-from PresEpsCompMR import CompPresEps
 import TOVSolver_differentEOS as tvg
-from PP_Gamma_Fit import *
 from NeutronStarEOSlibrary import *
 
 # Compute reference vectors for mass and radius values from 7th-order fit to gamma.
@@ -62,7 +60,11 @@ def NewMRfit():
     
 # Run curve fit.
     
-NewMRfit()
+# NewMRfit()
+
+# test
+
+MRVecGen(np.array([1.35692, 0, -0.82507687, 0.63569048, -0.13953949, 0.0095992]))
 
 rms_eR = rms_error(mass0,mass)
 rms_eM = rms_error(radius0,radius)
