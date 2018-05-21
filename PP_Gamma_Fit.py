@@ -32,6 +32,9 @@ from NeutronStarEOSlibrary import *
 def piecewise_fit(rhop,a,b,c,d,e,f):
     return a*rhop**7 + b*rhop**6 +  c*rhop**5 + d*rhop**4 + e*rhop**3 + f*rhop**2 + 0*rhop + 1.35692
 
+def piecewise_fit5(rhop,a,b,c,d):
+    return a*rhop**5 + b*rhop**4 + c*rhop**3 + d*rhop**2 + 0*rhop + 1.35692
+
 def piecewise_fit3(rhop,a,b):
     return a*rhop**3 + b*rhop**2 + 0*rhop + 1.35692
     
@@ -43,6 +46,7 @@ for i in range(nd):
     
 values,covar = curve_fit(piecewise_fit, DensNucCode_x, Gam_dataPP)
 values3,covar3 = curve_fit(piecewise_fit3, DensNucCode_x, Gam_dataPP)
+values5,covar5 = curve_fit(piecewise_fit5, DensNucCode_x, Gam_dataPP)
 
 ############################################################################
 
