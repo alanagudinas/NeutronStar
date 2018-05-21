@@ -47,11 +47,6 @@ p[2] = K[2] * rho2**G[2]
 K[3] = p[2]/(rho2**G[3])
 
 
-
-kGamma=51.76*1.96
-eGamma=2.
-rhoMax = 0.005
-
 for i in range(0,3):
     epsilon[i] = ((1)**2 + a[i])*rho[i] + K[i]*rho[i]**G[i]/(G[i]-1) 
     a[i+1] = (epsilon[i]/rho[i]) - (1)**2 - (K[i+1]/(G[i+1]-1))*rho[i]**(G[i+1]-1)/(1)**2
